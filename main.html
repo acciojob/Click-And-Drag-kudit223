@@ -52,9 +52,19 @@ cubes.forEach((cube)=>{
   });
   cube.addEventListener('mousemove',(e)=>{
     if(!activeCube) return;
-    
-    cube.style.top=`${e.clientY - y}px`;
-    cube.style.left=`${e.clientX - x}px`;
+    let newTop=e.clientY - y;
+    let newLeft=e.clientX - x;
+    const boardRect = board.getBoundingClientRect();
+    console.log(boardRect.width,boardRect.height);
+    console.log(newLeft,newTop)
+
+    if(newTop<0)
+    newTop=0;
+    if(newLeft<0)
+    newLeft=0;
+
+    cube.style.top=`${newTop}px`;
+    cube.style.left=`${newLeft}px`;
   });
   cube.addEventListener('mouseup',(e)=>{
     if(!activeCube) return;
