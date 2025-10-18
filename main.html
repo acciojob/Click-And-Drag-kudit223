@@ -36,6 +36,37 @@
 
 <script>
 //Your code goes here 
+	let cubes=document.querySelectorAll('.item');
+let board=document.querySelector(".items")
+let x,y;
+let activeCube=null;
+
+cubes.forEach((cube)=>{
+  cube.addEventListener('mousedown',(e)=>{
+    activeCube=cube;
+    x=e.offsetX;
+    y=e.offsetY;
+    cube.style.cursor="grabbing";
+    cube.style.zIndex = 1000;
+   console.log(cube);
+  });
+  cube.addEventListener('mousemove',(e)=>{
+    if(!activeCube) return;
+    
+    cube.style.top=`${e.clientY - y}px`;
+    cube.style.left=`${e.clientX - x}px`;
+  });
+  cube.addEventListener('mouseup',(e)=>{
+    if(!activeCube) return;
+    cube.style.cursor="grab";
+    cube.style.zIndex=1;
+    activeCube=null;
+  });
+  cube.style.cursor="grab";
+  cube.style.position="absolute";
+})
+
+
 </script>
 
   </body>
